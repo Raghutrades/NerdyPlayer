@@ -67,3 +67,10 @@ jobs:
           body: Download NerdyPlayer.apk below and install it. Each push rebuilds this file.
           files: out/NerdyPlayer.apk
           make_latest: true
+
+      - name: Publish the APK as a release (easy download link)
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.run_number }}
+          name: NerdyPlayer build ${{ github.run_number }}
+          files: out/NerdyPlayer.apk
