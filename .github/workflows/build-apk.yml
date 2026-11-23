@@ -47,7 +47,7 @@ jobs:
           gradle-version: 8.9
 
       - name: Build APK
-        run: cd "$ROOT" && gradle assembleDebug --no-daemon
+        run: cd "$ROOT" && gradle assembleDebug --no-daemon --stacktrace
 
       - name: Collect APK
         run: |
@@ -64,13 +64,6 @@ jobs:
         with:
           tag_name: latest
           name: NerdyPlayer (latest build)
-          body: Download NerdyPlayer.apk below and install it. Each push rebuilds this file.
+          body: NerdyPlayer 3.0 - VLC-powered player. Download NerdyPlayer.apk below and install it over the old one. Each push rebuilds this file.
           files: out/NerdyPlayer.apk
           make_latest: true
-
-      - name: Publish the APK as a release (easy download link)
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ github.run_number }}
-          name: NerdyPlayer build ${{ github.run_number }}
-          files: out/NerdyPlayer.apk
